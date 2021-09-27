@@ -16,6 +16,8 @@ class ProjectsService {
     const project = await this.getProjectById(projectId)
     project.name = projectData.name || project.name
     project.description = projectData.description || project.description
+    project.creatorId = projectData.creatorId || project.creatorId
+    project.id = projectData.id || project.id
     await project.save()
     return project
   }

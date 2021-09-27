@@ -33,7 +33,7 @@ export class ProjectsController extends BaseController {
   async createProject(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.creatorId = req.userInfo.id
+      // req.body.creatorId = req.userInfo.id
       const project = await projectsService.createProject(req.body)
       res.send(req.body)
     } catch (error) {
