@@ -32,7 +32,7 @@ export class BacklogItemsController extends BaseController {
 
   async createBacklogItem(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.id
+      // req.body.creatorId = req.userInfo.id
       const backlogItem = await backlogItemsService.createBacklogItem(req.body)
       res.send(backlogItem)
     } catch (error) {
