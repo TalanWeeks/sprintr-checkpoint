@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class ProjectsService {
-  async createProjects(projectData) {
+  async createProject(projectData) {
     const project = await dbContext.Project.create(projectData)
     return project
   }

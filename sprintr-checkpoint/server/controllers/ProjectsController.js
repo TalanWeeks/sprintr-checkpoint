@@ -7,7 +7,9 @@ export class ProjectsController extends BaseController {
     super('api/projects')
     this.router
       .get('', this.getProjects)
-      .get('/:id', this.getProjects)
+      .get('/:id', this.getProject)
+      .post('', this.createProject)
+      .put('/:projectId', this.editProject)
   }
 
   async getProjects(req, res, next) {
@@ -32,6 +34,7 @@ export class ProjectsController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
+      const project = await projectsService.createProject(req.body)
       res.send(req.body)
     } catch (error) {
       next(error)
