@@ -5,13 +5,13 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class SprintsController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/sprints')
+    super('api/projects')
     this.router
-      .get('', this.getSprints)
+      .get('/:projectId/sprints', this.getSprints)
       // .get('/:sprintId', this.getSprint)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createSprint)
-      .delete('/:sprintId', this.deleteSprint)
+      .post('/:projectId/sprints', this.createSprint)
+      .delete('/:projectId/sprints/:sprintId', this.deleteSprint)
   }
 
   async getSprints(req, res, next) {
