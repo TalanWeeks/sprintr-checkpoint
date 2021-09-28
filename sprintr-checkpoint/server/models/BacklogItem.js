@@ -12,3 +12,10 @@ export const BacklogItemSchema = new Schema({
 },
 { timestamps: true, toJSON: { virtuals: true } }
 )
+
+BacklogItemSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Profile'
+})

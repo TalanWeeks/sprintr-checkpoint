@@ -9,3 +9,10 @@ export const ProjectSchema = new Schema({
 },
 { timestamps: true, toJSON: { virtuals: true } }
 )
+
+ProjectSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Profile'
+})

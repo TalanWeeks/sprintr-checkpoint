@@ -13,3 +13,10 @@ export const SprintSchema = new Schema(
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } })
+
+SprintSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Profile'
+})

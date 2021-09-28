@@ -13,3 +13,10 @@ export const TaskSchema = new Schema(
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } })
+
+TaskSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Profile'
+})
