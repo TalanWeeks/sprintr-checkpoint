@@ -8,7 +8,7 @@ export const TaskSchema = new Schema(
     completedOn: { type: Date },
     assignedTo: { type: Schema.Types.ObjectId },
     backlogItemId: { type: Schema.Types.ObjectId },
-    projectId: { type: Schema.Types.ObjectId },
+    projectId: { type: String },
     creatorId: { type: Schema.Types.ObjectId },
     isCompleted: { type: Boolean }
     // NOTE If you wish to add additional properties do so here
