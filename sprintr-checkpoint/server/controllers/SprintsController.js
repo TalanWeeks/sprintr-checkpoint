@@ -8,7 +8,7 @@ export class SprintsController extends BaseController {
     super('api/projects/:projectId/sprints')
     this.router
       .get('', this.getSprints)
-      .get('/:sprintId', this.getSprintById)
+      // .get('/:sprintId', this.getSprint)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createSprint)
       .delete('/:sprintId', this.deleteSprint)
@@ -16,16 +16,16 @@ export class SprintsController extends BaseController {
 
   async getSprints(req, res, next) {
     try {
-      const sprints = await sprintsService.getSprints(req.query)
+      const sprints = await sprintsService.getSprintsByProjectId(req.params.projectId)
       return res.send(sprints)
     } catch (error) {
       next(error)
     }
   }
 
-  async getSprintById(req, res, next) {
+  async getSprint(req, res, next) {
     try {
-      const sprint = await sprintsService.getSprintById(req.params.id)
+      const sprint = await sprintsService.getSprintByProjectId(req.params.id)
       res.send(sprint)
     } catch (error) {
       next(error)

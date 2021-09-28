@@ -7,13 +7,13 @@ class SprintsService {
     return sprint
   }
 
-  async getSprints(query) {
-    const sprints = await dbContext.Sprint.find(query).populate('creator')
+  async getSprintsByProjectId(projectId) {
+    const sprints = await dbContext.Sprint.find({ projectId }).populate('creator')
     return sprints
   }
 
-  async getSprintById(sprintId) {
-    const sprint = await dbContext.Sprint.findById(sprintId).populate('creator', 'name picture')
+  async getSprintByProjectId(projectId, spintId) {
+    const sprint = await dbContext.Sprint.findById(projectId).populate('creator', 'name picture')
     if (!sprint) {
       throw new BadRequest('Invalid sprint Id')
     }
