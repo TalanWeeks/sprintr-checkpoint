@@ -13,7 +13,7 @@ class SprintsService {
     return sprints
   }
 
-  async getSprintByProjectId(projectId, spintId) {
+  async getSprintByProjectId(projectId) {
     const sprint = await dbContext.Sprint.findById(projectId).populate('creator', 'name picture')
     if (!sprint) {
       throw new BadRequest('Invalid sprint Id')
