@@ -4,6 +4,7 @@ import { BadRequest } from '../utils/Errors'
 class ProjectsService {
   async createProject(projectData) {
     const project = await dbContext.Project.create(projectData)
+    await project.populate('creator')
     return project
   }
 

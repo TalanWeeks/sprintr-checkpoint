@@ -4,27 +4,27 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class TasksController extends BaseController {
   constructor() {
-    super('api/tasks')
+    super('api/projects')
     this.router
-      .get('', this.getTasks)
-      .get('/:taskId', this.getTasksById)
+      .get('/:projectId/tasks', this.getTasks)
+      .get('/:projectId/tasks/:taskId', this.getTask)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createTask)
-      .delete('/:taskId', this.deleteTask)
+      .post('/:projectId/tasks', this.createTask)
+      .delete('/:projectId/tasks/:taskId', this.deleteTask)
   }
 
   async getTasks(req, res, next) {
     try {
-      const tasks = await tasksService.getTasks(req.query)
+      const tasks = await tasksService.getTasksByProjectId(req.params.projectId)
       res.send(tasks)
     } catch (error) {
       next(error)
     }
   }
 
-  async getTasksById(req, res, next) {
+  async getTask(req, res, next) {
     try {
-      const task = await tasksService.getTaskById(req.params.taskId)
+      const task = await tasksService.getTaskById(req.params.id)
       res.send(task)
     } catch (error) {
       next(error)

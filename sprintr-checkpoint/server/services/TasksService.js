@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext.js'
 import { BadRequest } from '../utils/Errors.js'
 
 class TasksService {
-  async getTasks(query) {
-    const tasks = await dbContext.Task.find(query)
+  async getTasksByProjectId(projectId) {
+    const tasks = await dbContext.Task.find({ projectId }).populate('creator')
     return tasks
   }
 
@@ -16,6 +16,7 @@ class TasksService {
 
   async createTask(taskData) {
     const task = await dbContext.Task.create(taskData)
+    await task.populate('creator')
     return task
   }
 

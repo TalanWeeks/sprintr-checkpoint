@@ -4,6 +4,7 @@ import { BadRequest } from '../utils/Errors'
 class SprintsService {
   async createSprint(sprintData) {
     const sprint = await dbContext.Sprint.create(sprintData)
+    await sprint.populate('creator')
     return sprint
   }
 
