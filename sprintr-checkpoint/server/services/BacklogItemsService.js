@@ -1,5 +1,5 @@
 import { dbContext } from '../db/DbContext.js'
-import { BadRequest, Forbidden } from '../utils/Errors.js'
+import { BadRequest } from '../utils/Errors.js'
 
 class BacklogItemsService {
   async getBacklogItemsByProjectId(projectId) {

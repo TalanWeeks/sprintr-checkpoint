@@ -12,6 +12,7 @@ class TasksService {
     if (!task) {
       throw new BadRequest('invalid task id dummy')
     }
+    return task
   }
 
   async createTask(taskData) {
@@ -24,5 +25,20 @@ class TasksService {
     const task = await dbContext.Task.findByIdAndRemove(taskId)
     return task
   }
-}
+
+  async editTask(taskId, taskData) {
+   const task = await this.getTaskById(taskId)
+   task.name = taskData.name || task.name
+   task.weight = taskData.weight || task.weight
+   task.description 
+  }
+//   name: { type: String },
+//     weight: { type: Number },
+//     completedOn: { type: Date },
+//     assignedTo: { type: Schema.Types.ObjectId },
+//     backlogItemId: { type: Schema.Types.ObjectId },
+//     projectId: { type: String },
+//     creatorId: { type: Schema.Types.ObjectId },
+//     isCompleted: { type: Boolean, require: true }
+// }
 export const tasksService = new TasksService()
