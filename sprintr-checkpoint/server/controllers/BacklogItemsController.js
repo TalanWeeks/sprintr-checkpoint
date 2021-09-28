@@ -49,13 +49,15 @@ export class BacklogItemsController extends BaseController {
       next(error)
     }
   }
-// REVIEW don't need edit, but if want later, here is.
-  // async editBacklogItem(req, res, next) {
-  //   try {
-  //     const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
-  //     res.send(backlogItem)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+
+  async editBacklogItem(req, res, next) {
+    try {
+      const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.body)
+      if (req.body.creatorId === req.userInfo.id) {
+        res.send(backlogItem)
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
 }

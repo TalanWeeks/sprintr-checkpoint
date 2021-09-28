@@ -1,5 +1,5 @@
 import { dbContext } from '../db/DbContext.js'
-import { BadRequest } from '../utils/Errors.js'
+import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BacklogItemsService {
   async getBacklogItems(query) {
@@ -12,6 +12,7 @@ class BacklogItemsService {
     if (!backlogItem) {
       throw new BadRequest('invalid backlogItem Id dummy')
     }
+    return backlogItem
   }
 
   async createBacklogItem(backlogItemData) {
@@ -23,14 +24,14 @@ class BacklogItemsService {
     const backlogItem = await dbContext.BacklogItem.findByIdAndDelete(backlogItemId)
     return backlogItem
   }
-// REVIEW not needed
-  // async editBacklogItem(backlogItemId, userId, body) {
-  //   // do this tomorrow!!!!!
-  //   const backlogItem = await this.getBacklogItemById(backlogItemId)
-  //   // if(userId !== backlogItem.creatorId..toString()){
-  //     throw new Forbidden('Cant edit a ')
-  //   }
-  // }
+
+  async editBacklogItem(backlogItemId, body) {
+    const backlogItem = await this.getBacklogItemById(backlogItemId)
+    backlogItem.name = body.name || backlogItem.name
+    backlogItem.description = body.description || backlogItem.description
+    backlogItem.status = body.statue || backlogItem.status
+    backlogItem.color = body.color || backlogItem.color
+  }
 }
 
 export const backlogItemsService = new BacklogItemsService()
