@@ -20,8 +20,8 @@ export const ProfileSchema = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
-
 ProfileSchema.virtual('creator', {
+  // REVIEW           ^^^^^^^^BANANA WORD
   localField: 'creatorId',
   foreignField: '_id',
   justOne: true,

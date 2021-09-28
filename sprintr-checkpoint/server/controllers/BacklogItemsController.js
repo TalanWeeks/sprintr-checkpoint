@@ -1,15 +1,16 @@
 import BaseController from '../utils/BaseController.js'
 import { backlogItemsService } from '../services/BacklogItemsService.js'
-
+import { Auth0Provider } from '@bcwdev/auth0provider'
 export class BacklogItemsController extends BaseController {
   constructor() {
     super('api/backlogitems')
     this.router
       .get('', this.getBacklogItems)
       .get('/:backlogItemId', this.getBacklogItemById)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBacklogItem)
       .delete('/:backlogItemId', this.deleteBacklogItem)
-      .put(':/backlogItemId', this.editBacklogItem)
+      // .put(':/backlogItemId', this.editBacklogItem)
   }
 
   async getBacklogItems(req, res, next) {
@@ -48,13 +49,13 @@ export class BacklogItemsController extends BaseController {
       next(error)
     }
   }
-
-  async editBacklogItem(req, res, next) {
-    try {
-      const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
-      res.send(backlogItem)
-    } catch (error) {
-      next(error)
-    }
-  }
+// REVIEW don't need edit, but if want later, here is.
+  // async editBacklogItem(req, res, next) {
+  //   try {
+  //     const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
+  //     res.send(backlogItem)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }
