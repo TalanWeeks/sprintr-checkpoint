@@ -10,7 +10,7 @@ export const TaskSchema = new Schema(
     backlogItemId: { type: Schema.Types.ObjectId },
     projectId: { type: String },
     creatorId: { type: Schema.Types.ObjectId },
-    isCompleted: { type: Boolean, require: true }
+    isComplete: { type: Boolean, default: false, require: true }
     // NOTE If you wish to add additional properties do so here
   },
   { timestamps: true, toJSON: { virtuals: true } })
