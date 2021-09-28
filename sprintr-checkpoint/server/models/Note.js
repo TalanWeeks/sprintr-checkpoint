@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 export const NoteSchema = new Schema(
   {
-    body: [{ type: String }],
-    backlogitemId: { type: Schema.Types.ObjectId },
+    body: { type: String },
+    backlogItemId: { type: Schema.Types.ObjectId },
     projectId: { type: Schema.Types.ObjectId },
     creatorId: { type: Schema.Types.ObjectId }
     // NOTE If you wish to add additional properties do so here
