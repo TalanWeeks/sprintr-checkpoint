@@ -1,5 +1,5 @@
 import { dbContext } from '../db/DbContext.js'
-import { BadRequest, Forbidden } from '../utils/Errors.js'
+import { BadRequest } from '../utils/Errors.js'
 
 class BacklogItemsService {
   async getBacklogItems(query) {
@@ -23,11 +23,14 @@ class BacklogItemsService {
     const backlogItem = await dbContext.BacklogItem.findByIdAndDelete(backlogItemId)
     return backlogItem
   }
-
-  editBacklogItem(backlogItemId, id, body) {
-    // do this tomorrow!!!!!
-    throw new Error('Method not implemented.')
-  }
+// REVIEW not needed
+  // async editBacklogItem(backlogItemId, userId, body) {
+  //   // do this tomorrow!!!!!
+  //   const backlogItem = await this.getBacklogItemById(backlogItemId)
+  //   // if(userId !== backlogItem.creatorId..toString()){
+  //     throw new Forbidden('Cant edit a ')
+  //   }
+  // }
 }
 
 export const backlogItemsService = new BacklogItemsService()
