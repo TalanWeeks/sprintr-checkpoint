@@ -2,13 +2,13 @@ import { dbContext } from '../db/DbContext.js'
 import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BacklogItemsService {
-  async getBacklogItems(query) {
-    const backlogItems = await dbContext.BacklogItem.find(query)
+  async getBacklogItemsByProjectId(projectId) {
+    const backlogItems = await dbContext.BacklogItem.find({ projectId }).populate('creator', 'id name picture')
     return backlogItems
   }
 
   async getBacklogItemById(backlogItemId) {
-    const backlogItem = await dbContext.BacklogItem.findById(backlogItemId)
+    const backlogItem = await dbContext.BacklogItem.findById(backlogItemId).populate('creator', 'id name picture')
     if (!backlogItem) {
       throw new BadRequest('invalid backlogItem Id dummy')
     }
@@ -17,6 +17,8 @@ class BacklogItemsService {
 
   async createBacklogItem(backlogItemData) {
     const backlogItem = await dbContext.BacklogItem.create(backlogItemData)
+    await backlogItem.populate('creator', 'id name picture')
+
     return backlogItem
   }
 
@@ -29,8 +31,11 @@ class BacklogItemsService {
     const backlogItem = await this.getBacklogItemById(backlogItemId)
     backlogItem.name = body.name || backlogItem.name
     backlogItem.description = body.description || backlogItem.description
-    backlogItem.status = body.statue || backlogItem.status
+    backlogItem.sprintId = body.sprintId || backlogItem.sprintId
+    backlogItem.status = body.status || backlogItem.status
     backlogItem.color = body.color || backlogItem.color
+    await backlogItem.save()
+    return backlogItem
   }
 }
 

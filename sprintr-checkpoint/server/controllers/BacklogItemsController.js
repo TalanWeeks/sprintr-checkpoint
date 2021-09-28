@@ -3,28 +3,29 @@ import { backlogItemsService } from '../services/BacklogItemsService.js'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 export class BacklogItemsController extends BaseController {
   constructor() {
-    super('api/backlogitems')
+    super('api/projects')
     this.router
-      .get('', this.getBacklogItems)
-      .get('/:backlogItemId', this.getBacklogItemById)
+      // .get('/:projectId/backlog', this.getBacklogItems)
+      .get('/:projectId/backlog', this.getBacklogItemById)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createBacklogItem)
-      .delete('/:backlogItemId', this.deleteBacklogItem)
+      .post('/:projectId/backlog', this.createBacklogItem)
+      .delete('/:projectId/backlog/:backlogItemId', this.deleteBacklogItem)
+      .put('/:projectId/backlog/:backlogItemId', this.editBacklogItem)
       // .put(':/backlogItemId', this.editBacklogItem)
   }
 
-  async getBacklogItems(req, res, next) {
-    try {
-      const backlogItems = await backlogItemsService.getBacklogItems(req.query)
-      res.send(backlogItems)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getBacklogItems(req, res, next) {
+  //   try {
+  //     const backlogItems = await backlogItemsService.getBacklogItems(req.query)
+  //     res.send(backlogItems)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async getBacklogItemById(req, res, next) {
     try {
-      const backlogItem = await backlogItemsService.getBacklogItemById(req.params.backlogItemId)
+      const backlogItem = await backlogItemsService.getBacklogItemsByProjectId(req.params.projectId)
       res.send(backlogItem)
     } catch (error) {
       next(error)
@@ -33,7 +34,7 @@ export class BacklogItemsController extends BaseController {
 
   async createBacklogItem(req, res, next) {
     try {
-      // req.body.creatorId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const backlogItem = await backlogItemsService.createBacklogItem(req.body)
       res.send(backlogItem)
     } catch (error) {
@@ -52,10 +53,9 @@ export class BacklogItemsController extends BaseController {
 
   async editBacklogItem(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.body)
-      if (req.body.creatorId === req.userInfo.id) {
-        res.send(backlogItem)
-      }
+      res.send(backlogItem)
     } catch (error) {
       next(error)
     }
