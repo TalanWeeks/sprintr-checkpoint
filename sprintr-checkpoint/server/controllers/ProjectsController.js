@@ -1,15 +1,18 @@
 
 import { projectsService } from '../services/ProjectsService'
 import BaseController from '../utils/BaseController'
+import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class ProjectsController extends BaseController {
   constructor() {
     super('api/projects')
     this.router
       .get('', this.getProjects)
-      .get('/:id', this.getProject)
+      .get('/:projectId', this.getProjectById)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createProject)
       .put('/:projectId', this.editProject)
+      .delete('/:projectId', this.deleteProject)
   }
 
   async getProjects(req, res, next) {
@@ -21,7 +24,7 @@ export class ProjectsController extends BaseController {
     }
   }
 
-  async getProject(req, res, next) {
+  async getProjectById(req, res, next) {
     try {
       const project = await projectsService.getProjectById(req.params.id)
       res.send(project)
@@ -33,9 +36,9 @@ export class ProjectsController extends BaseController {
   async createProject(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      // req.body.creatorId = req.userInfo.id
+      req.body.creatorId = req.userInfo.id
       const project = await projectsService.createProject(req.body)
-      res.send(req.body)
+      res.send(project)
     } catch (error) {
       next(error)
     }

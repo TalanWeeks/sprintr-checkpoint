@@ -8,7 +8,7 @@ class ProjectsService {
   }
 
   async getProjects(query) {
-    const projects = await dbContext.Project.find(query).populate()
+    const projects = await dbContext.Project.find(query).populate('creator')
     return projects
   }
 
