@@ -45,15 +45,17 @@ import { ref } from '@vue/reactivity'
 import { backlogItemsService } from '../services/BacklogItemsService.js'
 import Pop from '../utils/Pop.js'
 import { Modal } from 'bootstrap'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     const editable = ref({})
     return {
       editable,
 
       async createBacklogItem() {
         try {
-          await backlogItemsService.createBacklogItem(editable.value)
+          await backlogItemsService.createBacklogItem(editable.value, route.params.id)
           editable.value = {}
           Pop.toast('Item Created!', 'success')
           const modal = Modal.getInstance(document.getElementById('backlog-form'))
