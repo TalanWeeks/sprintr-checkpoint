@@ -10,7 +10,7 @@
       <div class="col-5"></div>
     </div>
     <div class="container">
-      <BacklogItem v-for="b in backlogItems" :key="b.id" :backlogitem="b" />
+      <BacklogItem v-for="b in backlogItems" :key="b.id" :backlog-item="b" />
     </div>
   </div>
   <div v-else>
@@ -23,15 +23,18 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
 import { backlogItemsService } from '../services/BacklogItemsService.js'
+import { BacklogItem } from '../models/BacklogItem.js'
+import { Project } from '../models/Project.js'
+import { useRoute } from 'vue-router'
+
 export default {
-  props: {
-    backlogItem: { type: Object, required: true }
-  },
-  setup(props) {
-    const currentProject = computed(() => AppState.currentProject)
+
+  setup() {
+    const route = useRoute()
+
     onMounted(async() => {
       try {
-        await backlogItemsService.getBacklogItems(currentProject.id)
+        await backlogItemsService.getBacklogItems(route.params.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }
