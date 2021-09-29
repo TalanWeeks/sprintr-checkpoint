@@ -11,6 +11,12 @@ class ProjectsService {
     logger.log('projects after map', AppState.projects)
   }
 
+  async getProjectById(id) {
+    const res = await api.get('api/projects/' + id)
+    logger.log('getProjectById', res)
+    AppState.currentProject = res.data
+  }
+
   async createProject(newProject) {
     const res = await api.post('api/projects', newProject)
     logger.log('createProject res', res)
@@ -20,7 +26,7 @@ class ProjectsService {
   async deleteProject(projectId) {
     const res = await api.delete(`api/projects/${projectId}`)
     logger.log('deleteProject', res)
-    AppState.projects = AppState.projects.filter(p => p.projectId !== projectId)
+    AppState.projects = AppState.projects.filter(p => p.id !== projectId)
   }
 }
 
