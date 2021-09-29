@@ -5,7 +5,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class SprintsController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/sprints')
+    super('api/projects/:id/sprints')
     this.router
       .get('', this.getSprints)
       // .get('/:sprintId', this.getSprint)
