@@ -11,16 +11,24 @@
 </template>
 
 <script>
-import { computed, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService.js'
+import Pop from '../utils/Pop.js'
 export default {
   setup() {
     const route = useRoute()
-    watchEffect(async() => {
-      await projectsService.getProjects(route.params.id)
+    onMounted(async() => {
+      try {
+        await projectsService.getProjectById(route.params.id)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
     })
+    // watchEffect(async() => {
+    //   await projectsService.getProjects(route.params.id)
+    // })
     return {
       currentProject: computed(() => AppState.currentProject)
     }
