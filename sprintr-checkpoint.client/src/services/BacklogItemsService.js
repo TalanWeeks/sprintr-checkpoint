@@ -6,7 +6,6 @@ import { api } from './AxiosService.js'
 class BacklogItemsService {
   async getBacklogItems(projectId) {
     AppState.backlogItems = []
-
     const res = await api.get(`api/projects/${projectId}/backlog`)
     logger.log('getBacklogItems', res)
 
