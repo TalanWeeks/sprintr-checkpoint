@@ -3,12 +3,14 @@
     <div class="container-fluid">
       <div class="row rounded my-2 py-3 bg-dark text-light">
         <div class="col-4 selectable">
-          <h4>
-            Project Title:
-          </h4>
-          <span class="text-success">{{ project.name }}</span>
+          <router-link :to="{name: 'Project', params: {id: project.Id}}" class="selectable">
+            <h4>
+              Project Title:
+            </h4>
+            <span class="text-success">{{ project.name }}</span>
+          </router-link>
         </div>
-        <div class="col-4 selectable">
+        <div class="col-4">
           <h4>
             Project Description:
           </h4>
