@@ -1,4 +1,3 @@
-import { applyStyles } from '@popperjs/core'
 import { AppState } from '../AppState.js'
 import { Project } from '../models/Project.js'
 import { logger } from '../utils/Logger.js'
