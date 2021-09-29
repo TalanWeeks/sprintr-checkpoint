@@ -16,9 +16,9 @@
           <span class="text-success">{{ backlogItem.description }}</span>
         </div>
         <div class="col-4">
-          <h4>Backlog Start Date:</h4>
+          <h4>Backlog Status:</h4>
 
-          <span class="text-success">{{ backlogItem.createdAt }}</span>
+          <span class="text-success">{{ backlogItem.status }}</span>
         </div>
       </div>
     </div>
