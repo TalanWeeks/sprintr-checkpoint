@@ -19,7 +19,7 @@ export default {
   setup() {
     const route = useRoute()
     watchEffect(async() => {
-      await projectsService.getProjectById(route.params.id)
+      await projectsService.getProjects(route.params.id)
     })
     return {
       currentProject: computed(() => AppState.currentProject)

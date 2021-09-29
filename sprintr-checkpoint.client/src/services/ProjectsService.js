@@ -1,11 +1,11 @@
 import { AppState } from '../AppState.js'
 import { Project } from '../models/Project.js'
 import { logger } from '../utils/Logger.js'
+import { convertToQuery } from '../utils/Query.js'
 import { api } from './AxiosService.js'
-
 class ProjectsService {
-  async getProjects() {
-    const res = await api.get('api/projects')
+  async getProjects(query) {
+    const res = await api.get('api/projects' + convertToQuery(query))
     logger.log('getProjects', res)
     AppState.projects = res.data.map(p => new Project(p))
     logger.log('projects after map', AppState.projects)
