@@ -6,12 +6,12 @@
           <div class="col-md-2 d-flex flex-md-column bg-dark">
             <ul class="nav-links ps-5 pt-5">
               <li class="nav-link">
-                <router-link class="selectable rounded p-2 text-success lighten-30" :to="{name: 'About'}">
+                <router-link class="selectable rounded p-2 text-success " :to="{name: 'About'}">
                   <h5>Backlog</h5>
                 </router-link>
               </li>
               <li class="nav-link">
-                <router-link class="selectable rounded p-2 text-success lighten-30" :to="{name: 'About'}">
+                <router-link class="selectable rounded p-2 text-success " :to="{name: 'About'}">
                   <h5>Sprint</h5>
                 </router-link>
               </li>
