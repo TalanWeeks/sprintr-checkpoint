@@ -31,7 +31,7 @@ export default {
   props: {
     backlogItem: { type: Object, required: true }
   },
-  setup() {
+  setup(props) {
     return {
       backlogItems: () => AppState.backlogItems
     }
