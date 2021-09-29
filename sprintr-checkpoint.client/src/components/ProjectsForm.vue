@@ -44,9 +44,8 @@ export default {
           await projectsService.createProject(editable.value)
           editable.value = {}
           Pop.toast('Project Created!', 'success')
-          // TODO for when put into modal
-          // const modal = Modal.getInstance(document.getElementById('project-form'))
-          // modal.hide()
+          const modal = Modal.getInstance(document.getElementById('project-form'))
+          modal.hide()
         } catch (error) {
           Pop.toast(error.message, 'error')
         }

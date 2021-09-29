@@ -6,6 +6,7 @@
           Create Project
         </button>
       </div>
+      <Project v-for="p in projects" :key="p.id" :project="p" />
     </div>
 
     <Modal id="project-form">
@@ -21,14 +22,24 @@
 
 <script>
 
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { projectsService } from '../services/ProjectsService.js'
+import Pop from '../utils/Pop.js'
 export default {
   name: 'Home',
   setup() {
+    onMounted(async() => {
+      try {
+        await projectsService.getProjects()
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
     return {
       // NOTE add on mounted to get all projects on page load
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      projects: computed(() => AppState.projects)
     }
   }
 }
