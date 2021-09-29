@@ -7,6 +7,15 @@
         </button>
       </div>
     </div>
+
+    <Modal id="project-form">
+      <template #modal-title>
+        Add your project
+      </template>
+      <template #modal-body>
+        <ProjectsForm />
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -18,6 +27,7 @@ export default {
   name: 'Home',
   setup() {
     return {
+      // NOTE add on mounted to get all projects on page load
       user: computed(() => AppState.user)
     }
   }
