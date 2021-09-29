@@ -4,8 +4,8 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
+          src="https://th.bing.com/th/id/OIP.q02CseUS1X-ndYHq5j7o0AHaD8?pid=ImgDet&w=620&h=330&rs=1"
+          height="55"
         />
       </div>
     </router-link>

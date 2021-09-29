@@ -3,17 +3,29 @@
     <div v-if="currentProject">
       <div class="container-fluid">
         <div class="row custom-row">
-          <div class="col-md-2 d-flex flex-md-column bg-dark">
-            <ul class="nav-links ps-5 pt-5">
+          <div class="col-md-2 text-center d-flex flex-md-column bg-dark">
+            <ul class="nav-links ps-0 pt-5">
               <li class="nav-link">
                 <router-link class="selectable rounded p-2 text-success " :to="{name: 'Project.Backlog'}">
-                  <h5>Backlog</h5>
+                  <h5>
+                    Backlog
+                  </h5>
                 </router-link>
+              </li>
+              <li class="nav-link">
+                <button v-if="user.isAuthenticated" class="btn btn-success my-5 m-2" type="button" data-bs-toggle="modal" data-bs-target="#backlog-form">
+                  Create BackLog
+                </button>
               </li>
               <li class="nav-link">
                 <router-link class="selectable rounded p-2 text-success " :to="{name: 'About'}">
                   <h5>Sprint</h5>
                 </router-link>
+              </li>
+              <li class="nav-link">
+                <button v-if="user.isAuthenticated" class="btn btn-success my-5 m-2" type="button" data-bs-toggle="modal" data-bs-target="#sprint-form">
+                  Create Sprint
+                </button>
               </li>
             </ul>
           </div>
@@ -49,6 +61,22 @@
       ....loading....
     </div>
   </div>
+  <Modal id="backlog-form">
+    <template #modal-title>
+      Create a Backlog
+    </template>
+    <template #modal-body>
+      <BacklogForm />
+    </template>
+  </Modal>
+  <Modal id="sprint-form">
+    <template #modal-title>
+      Create a Sprint
+    </template>
+    <template #modal-body>
+      <SprintForm />
+    </template>
+  </Modal>
 </template>
 
 <script>
@@ -71,7 +99,8 @@ export default {
     //   await projectsService.getProjects(route.params.id)
     // })
     return {
-      currentProject: computed(() => AppState.currentProject)
+      currentProject: computed(() => AppState.currentProject),
+      user: computed(() => AppState.user)
     }
   }
 }
