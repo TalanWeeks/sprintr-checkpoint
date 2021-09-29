@@ -1,18 +1,24 @@
 <template>
   <div class="Project">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-4">
-          test
-          {{ project.name }}
+      <div class="row rounded my-2 py-3 bg-dark text-light">
+        <div class="col-4 selectable">
+          <h4>
+            Project Title:
+          </h4>
+          <span class="text-success">{{ project.name }}</span>
+        </div>
+        <div class="col-4 selectable">
+          <h4>
+            Project Description:
+          </h4>
+
+          <span class="text-success">{{ project.description }}</span>
         </div>
         <div class="col-4">
-          test
-          {{ project.description }}
-        </div>
-        <div class="col-4">
-          test
-          {{ project.createdAt }}
+          <h4>Project Start Date:</h4>
+
+          <span class="text-success">{{ project.createdAt }}</span>
         </div>
       </div>
     </div>
