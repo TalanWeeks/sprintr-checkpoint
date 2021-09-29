@@ -10,7 +10,7 @@
       <div class="col-5"></div>
     </div>
     <div class="container">
-      <BacklogItem v-for="b in backlogItems" :key="b.id" :backlog-item="b" />
+      <BacklogItem v-for="b in backlogItems" :key="b.id" :backlogitem="b" />
     </div>
   </div>
   <div v-else>
@@ -24,7 +24,10 @@ import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
 import { backlogItemsService } from '../services/BacklogItemsService.js'
 export default {
-  setup() {
+  props: {
+    backlogItem: { type: Object, required: true }
+  },
+  setup(props) {
     const currentProject = computed(() => AppState.currentProject)
     onMounted(async() => {
       try {
