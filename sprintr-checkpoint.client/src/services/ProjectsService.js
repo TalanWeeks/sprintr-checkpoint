@@ -7,8 +7,12 @@ class ProjectsService {
   async getProjects(query) {
     const res = await api.get('api/projects' + convertToQuery(query))
     logger.log('getProjects', res)
-    AppState.projects = res.data.map(p => new Project(p))
-    logger.log('projects after map', AppState.projects)
+    if (res.data.length > 1) {
+      AppState.projects = res.data.map(p => new Project(p))
+      logger.log('projects after map', AppState.projects)
+    } else {
+      AppState.currentProject = new Project(res.data)
+    }
   }
 
   async getProjectById(id) {

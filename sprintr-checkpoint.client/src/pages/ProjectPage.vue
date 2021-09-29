@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="currentProject">
+    <div v-if="currentProject.length>0">
       <p><b>Project Name:</b>{{ currentProject.name }} </p>
       <p><b>Project Description:</b>{{ currentProject.description }}</p>
     </div>
