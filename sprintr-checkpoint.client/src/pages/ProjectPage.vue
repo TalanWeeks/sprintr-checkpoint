@@ -6,7 +6,7 @@
           <div class="col-md-2 d-flex flex-md-column bg-dark">
             <ul class="nav-links ps-5 pt-5">
               <li class="nav-link">
-                <router-link class="selectable rounded p-2 text-success " :to="{name: 'Backlog'}">
+                <router-link class="selectable rounded p-2 text-success " :to="{name: 'Project.Backlog'}">
                   <h5>Backlog</h5>
                 </router-link>
               </li>
