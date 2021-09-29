@@ -25,7 +25,7 @@ export class BacklogItemsController extends BaseController {
 
   async getBacklogItemById(req, res, next) {
     try {
-      const backlogItem = await backlogItemsService.getBacklogItemsByProjectId(req.params.projectId)
+      const backlogItem = await backlogItemsService.getBacklogItemsByProjectId(req.params.id)
       res.send(backlogItem)
     } catch (error) {
       next(error)
