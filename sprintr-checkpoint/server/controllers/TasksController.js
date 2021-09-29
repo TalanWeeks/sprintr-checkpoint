@@ -4,14 +4,14 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class TasksController extends BaseController {
   constructor() {
-    super('api/projects')
+    super('api/projects/:projectId/tasks')
     this.router
-      .get('/:projectId/tasks', this.getTasks)
-      .get('/:projectId/tasks/:taskId', this.getTask)
+      .get('', this.getTasks)
+      .get('/:taskId', this.getTask)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/:projectId/tasks', this.createTask)
-      .delete('/:projectId/tasks/:taskId', this.deleteTask)
-      .put('/:projectId/tasks/:taskId', this.editTask)
+      .post('', this.createTask)
+      .delete('/:taskId', this.deleteTask)
+      .put('/:taskId', this.editTask)
   }
 
   async getTasks(req, res, next) {

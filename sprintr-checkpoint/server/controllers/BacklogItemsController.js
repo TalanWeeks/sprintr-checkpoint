@@ -3,14 +3,14 @@ import { backlogItemsService } from '../services/BacklogItemsService.js'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 export class BacklogItemsController extends BaseController {
   constructor() {
-    super('api/projects')
+    super('api/projects/:projectId/backlog')
     this.router
       // .get('/:projectId/backlog', this.getBacklogItems)
-      .get('/:projectId/backlog', this.getBacklogItemById)
+      .get('', this.getBacklogItemById)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/:projectId/backlog', this.createBacklogItem)
-      .delete('/:projectId/backlog/:backlogItemId', this.deleteBacklogItem)
-      .put('/:projectId/backlog/:backlogItemId', this.editBacklogItem)
+      .post('', this.createBacklogItem)
+      .delete('/:backlogItemId', this.deleteBacklogItem)
+      .put('/:backlogItemId', this.editBacklogItem)
       // .put(':/backlogItemId', this.editBacklogItem)
   }
 
