@@ -2,7 +2,7 @@
   <div v-if="backlogItems">
     <div class="row text-center text-dark my-2">
       <div class="col-5"></div>
-      <div class="col-2 text-center border-dark border-bottom ">
+      <div class="col-2 text-center my-4 border-dark border-bottom ">
         <h2>
           BackLogs
         </h2>
