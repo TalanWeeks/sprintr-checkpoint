@@ -11,6 +11,12 @@ class ProjectsService {
     logger.log('projects after map', AppState.projects)
   }
 
+  async getProjectById(id) {
+    const res = await api.get('api/projects/' + id)
+    logger.log('getProjectById', res)
+    AppState.currentProject = res.data
+  }
+
   async createProject(newProject) {
     const res = await api.post('api/projects', newProject)
     logger.log('createProject res', res)
