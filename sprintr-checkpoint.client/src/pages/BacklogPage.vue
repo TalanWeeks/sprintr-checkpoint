@@ -25,7 +25,7 @@ export default {
       }
     })
     return {
-      getBacklogItems: computed(() => AppState.backlogItems)
+      backlogItems: computed(() => AppState.backlogItems)
     }
   }
 }
