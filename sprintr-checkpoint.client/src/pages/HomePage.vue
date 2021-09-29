@@ -11,8 +11,16 @@
 </template>
 
 <script>
+
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    return {
+      user: computed(() => AppState.user)
+    }
+  }
 }
 </script>
 
