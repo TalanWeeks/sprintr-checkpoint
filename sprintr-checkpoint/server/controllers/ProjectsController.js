@@ -8,11 +8,11 @@ export class ProjectsController extends BaseController {
     super('api/projects')
     this.router
       .get('', this.getProjects)
-      .get('/:projectId', this.getProjectById)
+      .get('/:id', this.getProjectById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createProject)
-      .put('/:projectId', this.editProject)
-      .delete('/:projectId', this.deleteProject)
+      .put('/:id', this.editProject)
+      .delete('/:id', this.deleteProject)
   }
 
   async getProjects(req, res, next) {
