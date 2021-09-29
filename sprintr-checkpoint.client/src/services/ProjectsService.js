@@ -1,3 +1,4 @@
+import { applyStyles } from '@popperjs/core'
 import { AppState } from '../AppState.js'
 import { Project } from '../models/Project.js'
 import { logger } from '../utils/Logger.js'
@@ -16,9 +17,11 @@ class ProjectsService {
   }
 
   async getProjectById(id) {
+    AppState.currentProject = {}
     const res = await api.get('api/projects/' + id)
     logger.log('getProjectById', res)
     AppState.currentProject = res.data
+    logger.log('currentProject after getById', AppState.currentProject)
   }
 
   async createProject(newProject) {
