@@ -16,7 +16,7 @@ class BacklogItemsService {
   async createBacklogItem(newItem, projectId) {
     const res = await api.post(`api/projects/${projectId}/backlog`, newItem)
     logger.log('createBacklogItem', res)
-    AppState.backlogItems.shift(new BacklogItem(res.data))
+    AppState.backlogItems = [...AppState.backlogItems, new BacklogItem(res.data)]
   }
 }
 

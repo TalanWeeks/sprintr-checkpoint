@@ -33,15 +33,17 @@ import { ref } from '@vue/reactivity'
 import Pop from '../utils/Pop.js'
 import { Modal } from 'bootstrap'
 import { sprintsService } from '../services/SprintsService.js'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     const editable = ref({})
     return {
       editable,
 
       async createSpring() {
         try {
-          await sprintsService.createSprint(editable.value)
+          await sprintsService.createSprint(editable.value, route.params.id)
           editable.value = {}
           Pop.toast('Sprint Created!', 'success')
           const modal = Modal.getInstance(document.getElementById('sprint-form'))
