@@ -32,16 +32,21 @@
 import { ref } from '@vue/reactivity'
 import Pop from '../utils/Pop.js'
 import { projectsService } from '../services/ProjectsService.js'
+import { Modal } from 'bootstrap'
 export default {
   setup() {
     const editable = ref({})
     return {
       editable,
+
       async createProject() {
         try {
           await projectsService.createProject(editable.value)
           editable.value = {}
           Pop.toast('Project Created!', 'success')
+          // TODO for when put into modal
+          // const modal = Modal.getInstance(document.getElementById('project-form'))
+          // modal.hide()
         } catch (error) {
           Pop.toast(error.message, 'error')
         }
