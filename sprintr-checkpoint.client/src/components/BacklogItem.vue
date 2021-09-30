@@ -17,7 +17,7 @@
           <button class="btn btn-success m-2" :data-bs-target="'#note-form-' + backlogItem.id" data-bs-toggle="modal">
             Create Note
           </button>
-          <button class="btn btn-success m-2">
+          <button class="btn btn-success m-2" :data-bs-target="'#notes-' + backlogItem.id" data-bs-toggle="modal">
             Show Note's
           </button>
         </div>
@@ -26,10 +26,18 @@
   </div>
   <Modal :id="'note-form-' + backlogItem.id">
     <template #modal-title>
-      Create Note
+      Create Note for {{ backlogItem.name }}
     </template>
     <template #modal-body>
       <NoteForm :backlog-item="backlogItem" />
+    </template>
+  </Modal>
+  <Modal :id="'notes-' + backlogItem.id">
+    <template #modal-title>
+      Note's for {{ backlogItem.name }}
+    </template>
+    <template #modal-body>
+      <!--NOTE make note component -->
     </template>
   </Modal>
 </template>
