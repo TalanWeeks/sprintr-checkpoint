@@ -50,7 +50,7 @@
                 <span class="text-success">{{ new Date(currentProject.createdAt).toLocaleDateString() }}</span>
               </div>
               <div class="col-2 text-end">
-                <div class="on-hover d-flex m-0 p-2" v-if="account.id == currentProject.creatorId">
+                <div class="d-flex m-0 p-2" v-if="account.id == currentProject.creatorId">
                   <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(currentProject.id)"></i>
                 </div>
               </div>

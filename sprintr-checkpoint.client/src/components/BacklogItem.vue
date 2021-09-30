@@ -14,8 +14,8 @@
           <span class="text-success">{{ backlogItem.status }}</span>
         </div>
         <div class="col-4 text-center">
-          <div class=" m-0 p-2">
-            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteBacklogItem(backlogItem.id)" v-if="account.id == backlogItem.creatorId"></i>
+          <div class=" m-0 p-2" v-if="account.id == backlogItem.creatorId">
+            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteBacklogItem(backlogItem.id)"></i>
           </div>
           <div class="dropdown">
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -68,12 +68,13 @@
 
 <script>
 import { AppState } from '../AppState'
+import { BacklogItem } from '../models/BacklogItem'
 import { backlogItemsService } from '../services/BacklogItemsService'
 import Pop from '../utils/Pop'
 
 export default {
   props: {
-    backlogItem: { type: Object, required: true }
+    backlogItem: { type: BacklogItem, required: true }
   },
   setup(props) {
     return {
