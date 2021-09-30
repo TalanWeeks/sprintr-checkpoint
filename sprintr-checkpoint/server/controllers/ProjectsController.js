@@ -55,7 +55,7 @@ export class ProjectsController extends BaseController {
 
   async deleteProject(req, res, next) {
     try {
-      const project = await projectsService.deleteProject(req.params.projectId)
+      const project = await projectsService.deleteProject(req.params.id)
       res.send(project)
     } catch (error) {
       next(error)
