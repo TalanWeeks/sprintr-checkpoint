@@ -9,7 +9,10 @@ class SprintsService {
   }
 
   async getSprintsByProjectId(projectId) {
-    const sprints = await dbContext.Sprint.find({ projectId }).populate('creator')
+    const sprints = await dbContext.Sprint.find({ projectId }).populate('creator', 'id name picture')
+    if (!sprints) {
+      throw new BadRequest('no project id or no sprints silly')
+    }
     return sprints
   }
 

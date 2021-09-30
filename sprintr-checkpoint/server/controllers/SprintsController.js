@@ -16,8 +16,8 @@ export class SprintsController extends BaseController {
 
   async getSprints(req, res, next) {
     try {
-      const sprints = await sprintsService.getSprintsByProjectId(req.params.projectId)
-      return res.send(sprints)
+      const sprints = await sprintsService.getSprintsByProjectId(req.params.id)
+      res.send(sprints)
     } catch (error) {
       next(error)
     }
@@ -36,6 +36,7 @@ export class SprintsController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
+      req.body.projectId = req.params.id
       const sprint = await sprintsService.createSprint(req.body)
       res.send(sprint)
     } catch (error) {

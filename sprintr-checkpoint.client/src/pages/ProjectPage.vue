@@ -18,7 +18,7 @@
                 </button>
               </li>
               <li class="nav-link">
-                <router-link class="selectable rounded p-2 text-success " :to="{name: 'About'}">
+                <router-link class="selectable rounded p-2 text-success " :to="{name: 'Project.Sprints'}">
                   <h5>Sprint</h5>
                 </router-link>
               </li>

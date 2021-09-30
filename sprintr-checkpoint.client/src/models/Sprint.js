@@ -1,7 +1,7 @@
 export class Sprint {
   constructor(sprintData) {
     this.name = sprintData.name
-    this.startDate = sprintData.startDate
+    this.createdAt = sprintData.createdAt
     this.endDate = sprintData.endDate
     this.isOpen = sprintData.isOpen
     this.assignedTo = sprintData.assignedTo

@@ -6,7 +6,7 @@
              type="text"
              name="name"
              id="name"
-             placeholder="Project Name"
+             placeholder="Sprint Name"
              class="form-control"
       >
     </div>
@@ -16,7 +16,7 @@
              type="text"
              name="description"
              id="description"
-             placeholder="Project Description"
+             placeholder="Sprint Description"
              class="form-control"
       >
     </div>
@@ -41,7 +41,7 @@ export default {
     return {
       editable,
 
-      async createSpring() {
+      async createSprint() {
         try {
           await sprintsService.createSprint(editable.value, route.params.id)
           editable.value = {}
