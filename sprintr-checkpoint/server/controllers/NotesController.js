@@ -5,10 +5,11 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class NotesController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/notes')
+    super('api/projects/:id/notes')
     this.router
       .get('', this.getNotes)
       .get('/:notesId', this.getNoteById)
+      //    ^^^^^^^^^^ this may be wrong but we may not need this function
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createNote)
 

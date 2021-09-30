@@ -24,6 +24,14 @@
       </div>
     </div>
   </div>
+  <Modal id="note-form">
+    <template #modal-title>
+      Create Note
+    </template>
+    <template #modal-body>
+      <NoteForm :backlog-item="backlogItem" />
+    </template>
+  </Modal>
 </template>
 
 <script>
