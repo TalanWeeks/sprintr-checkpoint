@@ -11,7 +11,7 @@ export class BacklogItemsController extends BaseController {
       .post('', this.createBacklogItem)
       .delete('/:backlogItemId', this.deleteBacklogItem)
       .put('/:backlogItemId', this.editBacklogItem)
-      // .put(':/backlogItemId', this.editBacklogItem)
+      .put(':/backlogItemId', this.editBacklogItem)
   }
 
   // async getBacklogItems(req, res, next) {
