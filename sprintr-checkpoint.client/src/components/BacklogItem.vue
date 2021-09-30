@@ -28,17 +28,17 @@
                 </button>
               </li>
               <li>
-                <button class="btn btn-success m-2" :data-bs-target="'#notes-' + backlogItem.id" data-bs-toggle="modal">
+                <button @click="getNotes()" type="button" class="btn btn-success m-2" :data-bs-target="'#notes-' + backlogItem.id" data-bs-toggle="modal">
                   Show Notes
                 </button>
               </li>
               <li>
-                <button class="btn btn-success m-2" :data-bs-target="'#tasks-form-' + backlogItem.id" data-bs-toggle="modal">
+                <button class="btn btn-success m-2" :data-bs-target="'#task-form-' + backlogItem.id" data-bs-toggle="modal">
                   Create Tasks
                 </button>
               </li>
               <li>
-                <button class="btn btn-success m-2" :data-bs-target="'#tasks-' + backlogItem.id" data-bs-toggle="modal">
+                <button @click="getTasks()" class="btn btn-success m-2" :data-bs-target="'#tasks-' + backlogItem.id" data-bs-toggle="modal">
                   Show Tasks
                 </button>
               </li>
@@ -58,28 +58,58 @@
   </Modal>
   <Modal :id="'notes-' + backlogItem.id">
     <template #modal-title>
+      Notes for {{ backlogItem.name }}
+    </template>
+    <template #modal-body>
+      <Note v-for="n in notes" :key="n.id" :note="n" />
+      this is appearing where our notes should be :V
+    </template>
+  </Modal>
+  <Modal :id="'task-form-' + backlogItem.id">
+    <template #modal-title>
+      Create Task for {{ backlogItem.name }}
+    </template>
+    <template #modal-body>
+      <TaskForm :backlog-item="backlogItem" />
+    </template>
+  </Modal>
+  <Modal :id="'tasks-' + backlogItem.id">
+    <template #modal-title>
       Note's for {{ backlogItem.name }}
     </template>
     <template #modal-body>
-      <!--NOTE make note component -->
+      <Task v-for="t in tasks" :key="t.id" :task="t" />
     </template>
   </Modal>
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { BacklogItem } from '../models/BacklogItem'
 import { backlogItemsService } from '../services/BacklogItemsService'
 import Pop from '../utils/Pop'
+import { useRoute } from 'vue-router'
+import { notesService } from '../services/NotesService.js'
+import { tasksService } from '../services/TaskService.js'
 
 export default {
   props: {
     backlogItem: { type: BacklogItem, required: true }
   },
   setup(props) {
+    const route = useRoute()
     return {
+      notes: computed(() => AppState.notes),
+      tasks: computed(() => AppState.tasks),
       backlogItems: () => AppState.backlogItems,
       account: () => AppState.account,
+      async getNotes() {
+        await notesService.getNotes(route.params.id, props.backlogItem.id)
+      },
+      async getTasks() {
+        await tasksService.getTasks(route.params.id, props.backlogItem.id)
+      },
       async deleteBacklogItem(BacklogItemId) {
         try {
           await backlogItemsService.deleteBacklogItem(BacklogItemId)
