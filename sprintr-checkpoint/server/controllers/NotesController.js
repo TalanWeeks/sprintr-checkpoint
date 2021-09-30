@@ -18,7 +18,7 @@ export class NotesController extends BaseController {
 
   async getNotes(req, res, next) {
     try {
-      const notes = await notesService.getNotesByProjectId(req.params.projectId)
+      const notes = await notesService.getNotesByBacklogId(req.params.backlogItemId)
       return res.send(notes)
     } catch (error) {
       next(error)
