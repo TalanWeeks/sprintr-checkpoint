@@ -102,8 +102,8 @@ export default {
     return {
       notes: computed(() => AppState.notes),
       tasks: computed(() => AppState.tasks),
-      backlogItems: () => AppState.backlogItems,
-      account: () => AppState.account,
+      backlogItems: computed(() => AppState.backlogItems),
+      account: computed(() => AppState.account),
       async getNotes() {
         await notesService.getNotes(route.params.id, props.backlogItem.id)
       },
