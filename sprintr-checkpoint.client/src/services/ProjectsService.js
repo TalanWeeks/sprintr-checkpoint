@@ -1,5 +1,6 @@
 import { AppState } from '../AppState.js'
 import { Project } from '../models/Project.js'
+import { router } from '../router.js'
 import { logger } from '../utils/Logger.js'
 import { convertToQuery } from '../utils/Query.js'
 import { api } from './AxiosService.js'
@@ -29,6 +30,7 @@ class ProjectsService {
     logger.log('createProject res', res)
     AppState.createdProject = res.data
     AppState.projects.shift(new Project(res.data))
+    router.push({ name: 'Project', params: { id: res.data.id } })
   }
 
   async deleteProject(projectId) {
