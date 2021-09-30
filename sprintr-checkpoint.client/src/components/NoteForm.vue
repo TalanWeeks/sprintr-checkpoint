@@ -6,7 +6,7 @@
              type="text"
              name="name"
              id="name"
-             placeholder="Sprint Name"
+             placeholder="this is not needed"
              class="form-control"
       >
     </div>
@@ -43,13 +43,15 @@ export default {
     const route = useRoute()
     const editable = ref({})
     return {
+      editable,
+
       async createNote() {
         try {
           editable.value.backlogItemId = props.backlogItem.id
           await notesService.createNote(editable.value, route.params.id)
           editable.value = {}
           Pop.toast('Note Created!', 'success')
-          const modal = Modal.getInstance(document.getElementById('note-form'))
+          const modal = Modal.getInstance(document.getElementById(`note-form-${props.backlogItem.id}`))
           modal.hide()
         } catch (error) {
           Pop.toast(error.message, 'error')

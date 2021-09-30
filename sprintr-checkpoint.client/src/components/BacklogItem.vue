@@ -14,7 +14,7 @@
           <span class="text-success">{{ backlogItem.status }}</span>
         </div>
         <div class="col-4 text-center">
-          <button class="btn btn-success m-2">
+          <button class="btn btn-success m-2" :data-bs-target="'#note-form-' + backlogItem.id" data-bs-toggle="modal">
             Create Note
           </button>
           <button class="btn btn-success m-2">
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <Modal id="note-form">
+  <Modal :id="'note-form-' + backlogItem.id">
     <template #modal-title>
       Create Note
     </template>

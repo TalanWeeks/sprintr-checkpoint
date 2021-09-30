@@ -7,10 +7,12 @@ class NotesService {
   async getNotes(projectId, backlogItemId) {
     AppState.notes = []
     const res = await api.get(`api/projects/${projectId}/notes`)
+    const filtered = res.data.filter(n => n.backlogItemId === backlogItemId)
+    AppState.notes = filtered.map(n => new Note(n))
   }
 
   async createNote(body, projectId) {
-    const res = await api.post(`api/project/${projectId}/notes`, body)
+    const res = await api.post(`api/projects/${projectId}/notes`, body)
     logger.log('createNote', res)
     AppState.notes = [...AppState.notes, (new Note(res.data))]
   }
