@@ -18,6 +18,14 @@
           <div class=" m-0 p-2">
             <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteSprint(sprint.id)" v-if="account.id == sprint.creatorId"></i>
           </div>
+
+          <label for="backlogItems" class="m-1">Asign a BackLog:</label>
+
+          <select name="backlogItems" id="backlogItems" @change="addBacklogToSprint($event)">
+            <option v-for="backlogItem in backlogItems" :key="backlogItem" :value="backlogItem.id">
+              {{ backlogItem.name }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
@@ -25,27 +33,39 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, ref } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
 import { sprintsService } from '../services/SprintsService'
 import { useRoute } from 'vue-router'
+import { backlogItemsService } from '../services/BacklogItemsService'
 
 export default {
   props: {
     sprint: { type: Object, required: true }
   },
-  setup() {
+  setup(props) {
     const route = useRoute()
+    const editable = ref({})
     return {
       account: computed(() => AppState.account),
+      backlogItems: computed(() => AppState.backlogItems),
       async deleteSprint(sprintId) {
         try {
           await sprintsService.deleteSprint(route.params.id, sprintId)
         } catch (error) {
           Pop.toast(error, 'error')
         }
+      },
+      async addBacklogToSprint(e) {
+        try {
+          const backlogItemId = e.target.options[e.target.options.selectedIndex].value
+          await backlogItemsService.editBacklogItem(props.sprint.id, backlogItemId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
       }
+
     }
   }
 }
