@@ -1,5 +1,6 @@
 <template>
-  <div class="col-12">
+  <div class="col-12 d-flex">
+    <img :src="note.creator.picture" alt="" height="50">
     <p><b>{{ note.creator.name }}: </b>{{ note.body }}</p>
   </div>
 </template>
