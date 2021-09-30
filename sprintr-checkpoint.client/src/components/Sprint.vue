@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { computed, ref } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
 import { sprintsService } from '../services/SprintsService'
@@ -46,7 +46,6 @@ export default {
   },
   setup(props) {
     const route = useRoute()
-    const editable = ref({})
     return {
       account: computed(() => AppState.account),
       backlogItems: computed(() => AppState.backlogItems),
@@ -59,8 +58,9 @@ export default {
       },
       async addBacklogToSprint(e) {
         try {
+          const projectId = route.params.id
           const backlogItemId = e.target.options[e.target.options.selectedIndex].value
-          await backlogItemsService.editBacklogItem(props.sprint.id, backlogItemId)
+          await backlogItemsService.editBacklogItem(props.sprint.id, backlogItemId, projectId)
         } catch (error) {
           Pop.toast(error, 'error')
         }

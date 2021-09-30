@@ -25,8 +25,9 @@ class BacklogItemsService {
     AppState.backlogItems = AppState.backlogItems.filter(p => p.id !== backlogItemId)
   }
 
-  async editBacklogItem(sprintId, backlogItemId) {
-    // TODO finish out put method
+  async editBacklogItem(sprintId, backlogItemId, projectId) {
+    const res = await api.get(`api/projects/${projectId}/backlog/${backlogItemId}`)
+    logger.log(res)
   }
 }
 
