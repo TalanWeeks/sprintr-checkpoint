@@ -24,8 +24,10 @@ class ProjectsService {
   }
 
   async createProject(newProject) {
+    AppState.createProject = []
     const res = await api.post('api/projects', newProject)
     logger.log('createProject res', res)
+    AppState.createdProject = res.data
     AppState.projects.shift(new Project(res.data))
   }
 

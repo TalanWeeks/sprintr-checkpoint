@@ -21,7 +21,7 @@
       >
     </div>
     <div class="btn-group">
-      <button type="submit" class="btn btn-success selectable">
+      <button type="submit" class="btn btn-success selectable mt-4">
         <b>Submit</b>
       </button>
     </div>
@@ -33,13 +33,17 @@ import { ref } from '@vue/reactivity'
 import Pop from '../utils/Pop.js'
 import { projectsService } from '../services/ProjectsService.js'
 import { Modal } from 'bootstrap'
+import { router } from '../router.js'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState.js'
 export default {
   setup() {
     const editable = ref({})
     return {
       editable,
+      currentProjectId: computed(() => AppState.currentProject.id),
 
-      async createProject() {
+      async createProject(currentProjectId) {
         try {
           await projectsService.createProject(editable.value)
           editable.value = {}
@@ -49,6 +53,7 @@ export default {
         } catch (error) {
           Pop.toast(error.message, 'error')
         }
+        router.push({ name: 'Project', params: currentProjectId })
       }
     }
   }
