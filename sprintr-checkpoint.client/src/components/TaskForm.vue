@@ -6,7 +6,7 @@
              type="text"
              name="name"
              id="name"
-             placeholder="Sprint Name"
+             placeholder="Task Name"
              class="form-control"
       >
     </div>
@@ -20,7 +20,7 @@
              class="form-control"
       >
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="assignedTo"></label>
       <input v-model="editable.assignedTo"
              type="text"
@@ -29,7 +29,7 @@
              placeholder="Assigned To"
              class="form-control"
       >
-    </div>
+    </div> -->
     <!-- NOTE need isComplete checkbox here probably -->
     <div class="btn-group">
       <button type="submit" class="btn btn-success selectable mt-4">
@@ -61,7 +61,7 @@ export default {
           editable.value.backlogItemId = props.backlogItem.id
           await tasksService.createTask(editable.value, route.params.id)
           editable.value = {}
-          Pop.toast('Task Created!', 'succes')
+          Pop.toast('Task Created!', 'success')
           const modal = Modal.getInstance(document.getElementById(`task-form-${props.backlogItem.id}`))
           modal.hide()
         } catch (error) {

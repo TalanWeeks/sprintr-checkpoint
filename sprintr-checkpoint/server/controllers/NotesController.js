@@ -2,7 +2,7 @@
 import { notesService } from '../services/NotesService'
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-
+import { backlogItemsService } from '../services/BacklogItemsService.js'
 export class NotesController extends BaseController {
   constructor() {
     super('api/projects/:id/notes')
@@ -18,7 +18,7 @@ export class NotesController extends BaseController {
 
   async getNotes(req, res, next) {
     try {
-      const notes = await notesService.getNotesByBacklogId(req.params.backlogItemId)
+      const notes = await notesService.getNotesByBacklogId()
       return res.send(notes)
     } catch (error) {
       next(error)

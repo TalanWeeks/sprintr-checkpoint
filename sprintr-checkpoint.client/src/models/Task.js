@@ -6,5 +6,6 @@ export class Task {
     this.assignedTo = taskData.assignedTo
     this.creatorId = taskData.creatorId
     this.isComplete = taskData.isComplete
+    this.creator = taskData.creator
   }
 }

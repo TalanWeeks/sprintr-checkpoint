@@ -48,6 +48,7 @@ export default {
       async createNote() {
         try {
           editable.value.backlogItemId = props.backlogItem.id
+          editable.value.projectId = route.params.id
           await notesService.createNote(editable.value, route.params.id)
           editable.value = {}
           Pop.toast('Note Created!', 'success')

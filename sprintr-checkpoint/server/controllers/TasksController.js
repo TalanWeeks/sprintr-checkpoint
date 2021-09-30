@@ -4,7 +4,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class TasksController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/tasks')
+    super('api/projects/:id/tasks')
     this.router
       .get('', this.getTasks)
       .get('/:taskId', this.getTask)
@@ -16,7 +16,7 @@ export class TasksController extends BaseController {
 
   async getTasks(req, res, next) {
     try {
-      const tasks = await tasksService.getTasksByProjectId(req.params.projectId)
+      const tasks = await tasksService.getTasksByBacklogId()
       res.send(tasks)
     } catch (error) {
       next(error)
