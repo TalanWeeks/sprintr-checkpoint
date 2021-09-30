@@ -17,10 +17,15 @@
 
           <span class="text-success">{{ project.description }}</span>
         </div>
-        <div class="col-4">
+        <div class="col-3">
           <h4>Project Start Date:</h4>
 
           <span class="text-success">{{ new Date(project.createdAt).toLocaleDateString() }}</span>
+        </div>
+        <div class="col-1">
+          <div class="on-hover d-flex justify-content-end m-0 p-2" v-if="account.id == project.creatorId">
+            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(project.id)"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -41,6 +46,7 @@ export default {
   setup(props) {
     return {
       projects: computed(() => AppState.projects),
+      account: computed(() => AppState.account),
       async getProjects(props) {
         try {
           await projectsService.getProjects()
@@ -48,9 +54,9 @@ export default {
           Pop.toast(error, 'error')
         }
       },
-      async deleteProject() {
+      async deleteProject(projectId) {
         try {
-          await projectsService.deleteProject()
+          await projectsService.deleteProject(projectId)
         } catch (error) {
           Pop.toast(error, 'error')
         }

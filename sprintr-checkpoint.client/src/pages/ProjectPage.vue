@@ -44,10 +44,15 @@
 
                 <span class="text-success">{{ currentProject.description }}</span>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <h4>Project Start Date:</h4>
 
                 <span class="text-success">{{ currentProject.createdAt }}</span>
+              </div>
+              <div class="col-1">
+                <div class="on-hover d-flex justify-content-end m-0 p-2" v-if="account.id == currentProject.creatorId">
+                  <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(currentProject.id)"></i>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -80,7 +85,7 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService.js'
@@ -100,7 +105,15 @@ export default {
     // })
     return {
       currentProject: computed(() => AppState.currentProject),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
+      async deleteProject(projectId) {
+        try {
+          await projectsService.deleteProject(projectId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }
