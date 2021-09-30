@@ -68,12 +68,13 @@
 
 <script>
 import { AppState } from '../AppState'
+import { BacklogItem } from '../models/BacklogItem'
 import { backlogItemsService } from '../services/BacklogItemsService'
 import Pop from '../utils/Pop'
 
 export default {
   props: {
-    backlogItem: { type: Object, required: true }
+    backlogItem: { type: BacklogItem, required: true }
   },
   setup(props) {
     return {

@@ -15,7 +15,7 @@
           <span class="text-success">{{ new Date(sprint.createdAt).toLocaleDateString() }}</span>
         </div>
         <div class="col-2">
-          <div class="on-hover m-0 p-2">
+          <div class=" m-0 p-2">
             <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteSprint(sprint.id)" v-if="account.id == sprint.creatorId"></i>
           </div>
         </div>
