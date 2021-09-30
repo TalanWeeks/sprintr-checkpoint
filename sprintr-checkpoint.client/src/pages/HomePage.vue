@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <button v-if="user.isAuthenticated" class="btn btn-success my-5" type="button" data-bs-toggle="modal" data-bs-target="#project-form">
+        <button v-if="user.isAuthenticated" class="btn btn-success my-5 ms-3" type="button" data-bs-toggle="modal" data-bs-target="#project-form">
           Create Project
         </button>
       </div>

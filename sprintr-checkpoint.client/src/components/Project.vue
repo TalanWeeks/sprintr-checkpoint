@@ -1,8 +1,8 @@
 <template>
   <div class="Project">
     <div class="container-fluid">
-      <div class="row shadow rounded mt-2 mb-5 py-3 bg-dark text-light">
-        <div class="col-4 selectable">
+      <div class="row d-flex justify-content-around shadow rounded mt-2 mb-5 py-3 bg-dark text-light">
+        <div class="col-3 selectable">
           <router-link :to="{name: 'Project', params: {id: project.id}}" class="selectable">
             <h4>
               Project Title:
@@ -10,21 +10,21 @@
             <span class="text-success">{{ project.name }}</span>
           </router-link>
         </div>
-        <div class="col-4">
+        <div class="col-3">
           <h4>
             Project Description:
           </h4>
 
           <span class="text-success">{{ project.description }}</span>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <h4>Project Start Date:</h4>
 
           <span class="text-success">{{ new Date(project.createdAt).toLocaleDateString() }}</span>
         </div>
-        <div class="col-1">
-          <div class="on-hover d-flex justify-content-end m-0 p-2" v-if="account.id == project.creatorId">
-            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(project.id)"></i>
+        <div class="col-2 text-start">
+          <div class="on-hover m-0 p-2">
+            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(project.id)" v-if="account.id == project.creatorId"></i>
           </div>
         </div>
       </div>

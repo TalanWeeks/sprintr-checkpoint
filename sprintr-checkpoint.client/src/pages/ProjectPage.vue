@@ -31,13 +31,13 @@
           </div>
           <div class="col-md-10">
             <div class="row shadow rounded m-3 py-3 bg-dark text-light">
-              <div class="col-4">
+              <div class="col-3">
                 <h4>
                   Project Title:
                 </h4>
                 <span class="text-success">{{ currentProject.name }}</span>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <h4>
                   Project Description:
                 </h4>
@@ -49,8 +49,8 @@
 
                 <span class="text-success">{{ currentProject.createdAt }}</span>
               </div>
-              <div class="col-1">
-                <div class="on-hover d-flex justify-content-end m-0 p-2" v-if="account.id == currentProject.creatorId">
+              <div class="col-2 text-end">
+                <div class="on-hover d-flex m-0 p-2" v-if="account.id == currentProject.creatorId">
                   <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteProject(currentProject.id)"></i>
                 </div>
               </div>
