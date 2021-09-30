@@ -12,7 +12,7 @@
           <h4>
             Sprint Created:
           </h4>
-          <span class="text-success">{{ sprint.createdAt }}</span>
+          <span class="text-success">{{ new Date(sprint.createdAt).toLocaleDateString() }}</span>
         </div>
       </div>
     </div>

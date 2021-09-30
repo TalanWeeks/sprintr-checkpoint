@@ -20,7 +20,7 @@
         <div class="col-4">
           <h4>Project Start Date:</h4>
 
-          <span class="text-success">{{ project.createdAt }}</span>
+          <span class="text-success">{{ new Date(project.createdAt).toLocaleDateString() }}</span>
         </div>
       </div>
     </div>

@@ -9,16 +9,17 @@
           <span class="text-success">{{ backlogItem.name }}</span>
         </div>
         <div class="col-4">
-          <h4>
-            Backlog Description:
-          </h4>
-
-          <span class="text-success">{{ backlogItem.description }}</span>
-        </div>
-        <div class="col-4">
           <h4>Backlog Status:</h4>
 
           <span class="text-success">{{ backlogItem.status }}</span>
+        </div>
+        <div class="col-4 text-center">
+          <button class="btn btn-success m-2">
+            Create Note
+          </button>
+          <button class="btn btn-success m-2">
+            Show Note's
+          </button>
         </div>
       </div>
     </div>
