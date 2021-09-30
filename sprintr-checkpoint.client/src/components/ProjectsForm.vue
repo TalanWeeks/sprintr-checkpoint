@@ -43,7 +43,7 @@ export default {
       editable,
       currentProjectId: computed(() => AppState.currentProject.id),
 
-      async createProject(currentProjectId) {
+      async createProject() {
         try {
           await projectsService.createProject(editable.value)
           editable.value = {}
@@ -53,7 +53,6 @@ export default {
         } catch (error) {
           Pop.toast(error.message, 'error')
         }
-        router.push({ name: 'Project', params: currentProjectId })
       }
     }
   }
