@@ -90,6 +90,7 @@ import { AppState } from '../AppState.js'
 import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService.js'
 import Pop from '../utils/Pop.js'
+import { router } from '../router.js'
 export default {
   setup() {
     const route = useRoute()
@@ -113,6 +114,7 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
+        router.push({ name: 'Home' })
       }
     }
   }
