@@ -24,6 +24,10 @@ class BacklogItemsService {
     logger.log('deletebacklogItem', res)
     AppState.backlogItems = AppState.backlogItems.filter(p => p.id !== backlogItemId)
   }
+
+  async editBacklogItem(sprintId, backlogItemId) {
+    // TODO finish out put method
+  }
 }
 
 export const backlogItemsService = new BacklogItemsService()
