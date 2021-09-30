@@ -20,6 +20,9 @@
           <button class="btn btn-success m-2" :data-bs-target="'#notes-' + backlogItem.id" data-bs-toggle="modal">
             Show Note's
           </button>
+          <div class=" m-0 p-2">
+            <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteBacklogItem(backlogItem.id)" v-if="account.id == backlogItem.creatorId"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -44,13 +47,24 @@
 
 <script>
 import { AppState } from '../AppState'
+import { backlogItemsService } from '../services/BacklogItemsService'
+import Pop from '../utils/Pop'
+
 export default {
   props: {
     backlogItem: { type: Object, required: true }
   },
   setup(props) {
     return {
-      backlogItems: () => AppState.backlogItems
+      backlogItems: () => AppState.backlogItems,
+
+      async deleteBacklogItem(BacklogItemId) {
+        try {
+          await backlogItemsService.deleteBacklogItem(BacklogItemId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }

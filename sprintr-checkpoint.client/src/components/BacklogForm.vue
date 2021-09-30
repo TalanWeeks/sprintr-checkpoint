@@ -33,7 +33,7 @@
       </select>
     </div>
     <div class="btn-group">
-      <button type="submit" class="btn btn-success selectable">
+      <button type="submit" class="btn mt-3 btn-success selectable">
         <b>Submit</b>
       </button>
     </div>
