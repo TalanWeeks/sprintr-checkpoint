@@ -9,5 +9,6 @@ export class BacklogItem {
     this.id = backlogItemData.id
     this.color = backlogItemData.color
     this.creatorId = backlogItemData.creator.id
+    this.sprintId = backlogItemData.sprintId
   }
 }

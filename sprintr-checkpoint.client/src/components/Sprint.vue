@@ -28,27 +28,46 @@
           </select>
         </div>
       </div>
+      <div v-if="backlogItemsFilter">
+        <div class="row shadow rounded my-2 py-3 bg-dark text-light">
+          <div class="col-5">
+            <h4>
+              Backlog Title:
+            </h4>
+            <span class="text-success">{{ backlogItemsFilter.name }}</span>
+          </div>
+          <div class="col-5">
+            <h4>
+              Backlog Created:
+            </h4>
+            <span class="text-success">{{ backlogItemsFilter.description }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
 import { sprintsService } from '../services/SprintsService'
 import { useRoute } from 'vue-router'
 import { backlogItemsService } from '../services/BacklogItemsService'
-
+import { BacklogItem } from '../models/BacklogItem'
 export default {
   props: {
-    sprint: { type: Object, required: true }
+    sprint: { type: Object, required: true },
+    backlog: { type: Object, required: true }
   },
   setup(props) {
     const route = useRoute()
+
     return {
       account: computed(() => AppState.account),
       backlogItems: computed(() => AppState.backlogItems),
+      backlogItemsFilter: computed(() => AppState.backlogItems.filter(b => b.sprintId === props.sprint.id)),
       async deleteSprint(sprintId) {
         try {
           await sprintsService.deleteSprint(route.params.id, sprintId)

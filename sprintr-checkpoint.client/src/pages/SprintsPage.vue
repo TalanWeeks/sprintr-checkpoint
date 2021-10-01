@@ -24,12 +24,14 @@ import { useRoute } from 'vue-router'
 import Pop from '../utils/Pop.js'
 import { sprintsService } from '../services/SprintsService.js'
 import { AppState } from '../AppState.js'
+import { backlogItemsService } from '../services/BacklogItemsService.js'
 export default {
   setup() {
     const route = useRoute()
     onMounted(async() => {
       try {
         await sprintsService.getSprints(route.params.id)
+        await backlogItemsService.getBacklogItems(route.params.id)
       } catch (error) {
         Pop.toast(error.message, 'error')
       }
