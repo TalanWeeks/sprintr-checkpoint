@@ -1,7 +1,7 @@
 <template>
   <div class="Project">
     <div class="container-fluid">
-      <div class="row d-flex justify-content-around shadow rounded mt-2 mb-5 py-3 bg-dark text-light">
+      <div class="row d-flex justify-content-around shadow rounded mt-2 mx-5 mb-5 py-3 bg-dark text-light">
         <div class="col-3 selectable">
           <router-link :to="{name: 'Project', params: {id: project.id}}" class="selectable">
             <h4>

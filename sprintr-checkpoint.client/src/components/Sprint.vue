@@ -1,7 +1,7 @@
 <template>
   <div class="Sprint">
     <div class="container-fluid">
-      <div class="row shadow rounded my-2 py-3 bg-dark text-light">
+      <div class="row shadow rounded my-2 py-3 bg-black text-light">
         <div class="col-5">
           <h4>
             Sprint Title:
@@ -36,13 +36,13 @@
           <div class="row row shadow rounded my-2 py-3 bg-dark text-light">
             <div class="col-5">
               <h4>
-                Backlog Title:
+                Backlog Item:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[0].name }}</span>
             </div>
             <div class="col-5">
               <h4>
-                Backlog Created:
+                Backlog Description:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[0].description }}</span>
             </div>
@@ -50,13 +50,13 @@
           <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 1">
             <div class="col-5">
               <h4>
-                Backlog Title:
+                Backlog Item:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[1].name }}</span>
             </div>
             <div class="col-5">
               <h4>
-                Backlog Created:
+                Backlog Description:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[1].description }}</span>
             </div>
@@ -64,13 +64,13 @@
           <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 2">
             <div class="col-5">
               <h4>
-                Backlog Title:
+                Backlog Item:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[2].name }}</span>
             </div>
             <div class="col-5">
               <h4>
-                Backlog Created:
+                Backlog Description:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[2].description }}</span>
             </div>
@@ -78,13 +78,13 @@
           <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 3">
             <div class="col-5">
               <h4>
-                Backlog Title:
+                Backlog Item:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[4].name }}</span>
             </div>
             <div class="col-5">
               <h4>
-                Backlog Created:
+                Backlog Description:
               </h4>
               <span class="text-success">{{ backlogItemsFilter[4].description }}</span>
             </div>
