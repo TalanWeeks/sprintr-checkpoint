@@ -5,8 +5,8 @@ export class BacklogItemsController extends BaseController {
   constructor() {
     super('api/projects/:id/backlog')
     this.router
-      // .get('/:projectId/backlog', this.getBacklogItems)
-      .get('', this.getBacklogItemById)
+      .get('/:backlogItemId', this.getBacklogItemById)
+      .get('', this.getBacklogItemByProjectId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBacklogItem)
       .delete('/:backlogItemId', this.deleteBacklogItem)
@@ -23,9 +23,18 @@ export class BacklogItemsController extends BaseController {
   //   }
   // }
 
-  async getBacklogItemById(req, res, next) {
+  async getBacklogItemByProjectId(req, res, next) {
     try {
       const backlogItem = await backlogItemsService.getBacklogItemsByProjectId(req.params.id)
+      res.send(backlogItem)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getBacklogItemById(req, res, next) {
+    try {
+      const backlogItem = await backlogItemsService.getBacklogItemById(req.params.backlogItemId)
       res.send(backlogItem)
     } catch (error) {
       next(error)
