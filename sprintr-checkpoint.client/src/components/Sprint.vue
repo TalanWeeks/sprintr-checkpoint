@@ -34,13 +34,13 @@
             <h4>
               Backlog Title:
             </h4>
-            <span class="text-success">{{ backlogItemsFilter.name }}</span>
+            <span class="text-success">{{ backlogItemsFilter[0].name }}</span>
           </div>
           <div class="col-5">
             <h4>
               Backlog Created:
             </h4>
-            <span class="text-success">{{ backlogItemsFilter.description }}</span>
+            <span class="text-success">{{ backlogItemsFilter[0].description }}</span>
           </div>
         </div>
       </div>
