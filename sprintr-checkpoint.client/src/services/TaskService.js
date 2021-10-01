@@ -30,6 +30,12 @@ class TasksService {
     const res = await api.put(`api/projects/${projectId}/tasks/${taskId}`, actualTask)
     logger.log('checked after put', res)
   }
+
+  async deleteTask(taskId, projectId) {
+    const res = await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
+    logger.log('deleteTask', res)
+    AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
+  }
 }
 
 export const tasksService = new TasksService()
