@@ -26,8 +26,11 @@ class BacklogItemsService {
   }
 
   async editBacklogItem(sprintId, backlogItemId, projectId) {
-    const res = await api.get(`api/projects/${projectId}/backlog/${backlogItemId}`)
-    logger.log(res)
+    // const res = await api.get(`api/projects/${projectId}/backlog/${backlogItemId}`)
+    // logger.log(res.data)
+    const editedBacklog = await api.put(`api/projects/${projectId}/backlog/${backlogItemId}`, { sprintId })
+    logger.log(editedBacklog)
+    this.getBacklogItems(projectId)
   }
 }
 
