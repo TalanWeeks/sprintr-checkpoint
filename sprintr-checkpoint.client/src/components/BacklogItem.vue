@@ -74,7 +74,9 @@
   </Modal>
   <Modal :id="'tasks-' + backlogItem.id">
     <template #modal-title>
-      Notes for {{ backlogItem.name }}
+      Tasks for {{ backlogItem.name }}
+      Total Weight:
+      <!-- NOTE total weight variable interpolated here -->
     </template>
     <template #modal-body>
       <Task v-for="t in tasks" :key="t.id" :task="t" />
