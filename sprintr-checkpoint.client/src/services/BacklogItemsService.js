@@ -32,6 +32,12 @@ class BacklogItemsService {
     logger.log(editedBacklog)
     this.getBacklogItems(projectId)
   }
+
+  async changeStatus(status, backlogItemId, projectId) {
+    const editedBacklog = await api.put(`api/projects/${projectId}/backlog/${backlogItemId}`, { status })
+    logger.log('i changed the status', editedBacklog)
+    this.getBacklogItems(projectId)
+  }
 }
 
 export const backlogItemsService = new BacklogItemsService()

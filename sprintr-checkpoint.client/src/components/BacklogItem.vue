@@ -9,9 +9,27 @@
           <span class="text-success">{{ backlogItem.name }}</span>
         </div>
         <div class="col-4">
-          <h4>Backlog Status:</h4>
-
-          <span class="text-success">{{ backlogItem.status }}</span>
+          <h4>Backlog Status: <span class="text-success">{{ backlogItem.status }}</span></h4>
+          <div v-if="account.id == backlogItem.creatorId">
+            <i class="mdi mdi-cog text-success f-20 mx-3"></i>
+            <select class="selectable" name="backlogItems" id="backlogItems" @change="changeBackLogStatus($event, backlogItem.id)">
+              <option class="selectable">
+                Update Status
+              </option>
+              <option class="selectable">
+                pending
+              </option>
+              <option class="selectable">
+                in-progress
+              </option>
+              <option class="selectable">
+                review
+              </option>
+              <option class="selectable">
+                done
+              </option>
+            </select>
+          </div>
         </div>
         <div class="col-4 text-center">
           <div class=" m-0 p-2" v-if="account.id == backlogItem.creatorId">
@@ -97,6 +115,7 @@ import Pop from '../utils/Pop'
 import { useRoute } from 'vue-router'
 import { notesService } from '../services/NotesService.js'
 import { tasksService } from '../services/TaskService.js'
+import { logger } from '../utils/Logger'
 
 export default {
   props: {
@@ -119,6 +138,14 @@ export default {
       async deleteBacklogItem(BacklogItemId) {
         try {
           await backlogItemsService.deleteBacklogItem(BacklogItemId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async changeBackLogStatus(status, backLogId) {
+        try {
+          const projectId = route.params.id
+          await backlogItemsService.changeStatus(status.target.options[status.target.options.selectedIndex].value, backLogId, projectId)
         } catch (error) {
           Pop.toast(error, 'error')
         }
