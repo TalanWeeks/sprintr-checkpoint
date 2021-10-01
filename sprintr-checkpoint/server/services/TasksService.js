@@ -33,7 +33,7 @@ class TasksService {
     task.completedOn = taskData.completedOn || task.completedOn
     task.assignedTo = taskData.assignedTo || task.assignedTo
     task.backlogItemId = taskData.backlogItemId || task.backlogItemId
-    task.isComplete = taskData.isComplete || task.isComplete
+    task.isComplete = taskData.isComplete
     await task.save()
     return task
   }
