@@ -11,6 +11,7 @@ export const AppState = reactive({
   notes: [],
   tasks: [],
   sprints: [],
-  sprintBacklog: []
+  sprintBacklog: [],
+  totalWeight: 0
 
 })

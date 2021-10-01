@@ -75,7 +75,9 @@
   <Modal :id="'tasks-' + backlogItem.id">
     <template #modal-title>
       Tasks for {{ backlogItem.name }}
-      Total Weight:
+      <div v-if="totalWeight">
+        Total Weight: {{ totalWeight }}
+      </div>
       <!-- NOTE total weight variable interpolated here -->
     </template>
     <template #modal-body>
@@ -105,6 +107,7 @@ export default {
       tasks: computed(() => AppState.tasks),
       backlogItems: computed(() => AppState.backlogItems),
       account: computed(() => AppState.account),
+      totalWeight: computed(() => AppState.totalWeight),
       async getNotes() {
         await notesService.getNotes(route.params.id, props.backlogItem.id)
       },

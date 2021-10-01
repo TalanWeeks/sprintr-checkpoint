@@ -5,11 +5,13 @@ import { api } from './AxiosService.js'
 
 class TasksService {
   async getTasks(projectId, backlogItemId) {
+    AppState.totalWeight = 0
     AppState.tasks = []
     const res = await api.get(`api/projects/${projectId}/tasks`)
     const filtered = res.data.filter(t => t.backlogItemId === backlogItemId)
     AppState.tasks = filtered.map(t => new Task(t))
     logger.log('tasks after filter', res)
+    this.addTaskWeight()
   }
 
   async createTask(newTask, projectId) {
@@ -29,6 +31,15 @@ class TasksService {
     logger.log(actualTask.isComplete)
     const res = await api.put(`api/projects/${projectId}/tasks/${taskId}`, actualTask)
     logger.log('checked after put', res)
+  }
+
+  addTaskWeight() {
+    const tasks = AppState.tasks
+    for (let i = 0; i < tasks.length; i++) {
+      const task = tasks[i]
+      AppState.totalWeight += task.weight
+    }
+    logger.log('Appstate after 4loop', AppState.totalWeight)
   }
 
   async deleteTask(taskId, projectId) {
