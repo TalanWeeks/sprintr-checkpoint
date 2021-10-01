@@ -21,9 +21,9 @@
 
           <label for="backlogItems" class="m-1">Asign a BackLog:</label>
 
-          <select name="backlogItems" id="backlogItems" @click="addBacklogToSprint($event)">
+          <select name="backlogItems" id="backlogItems" @change="addBacklogToSprint($event)">
             <option class="unselectable">
-              default
+              options
             </option>
             <option v-for="backlogItem in backlogItems" :key="backlogItem" :value="backlogItem.id">
               {{ backlogItem.name }}
