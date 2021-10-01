@@ -13,7 +13,7 @@ export class NotesController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createNote)
 
-      .delete('/:projectId/notes/:notesId', this.deleteNote)
+      .delete('/:notesId', this.deleteNote)
   }
 
   async getNotes(req, res, next) {

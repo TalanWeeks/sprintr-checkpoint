@@ -5,5 +5,6 @@ export class Note {
     this.projectId = noteData.projectId
     this.creatorId = noteData.creatorId
     this.creator = noteData.creator
+    this.id = noteData.id
   }
 }
