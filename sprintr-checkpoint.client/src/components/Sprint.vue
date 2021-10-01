@@ -32,7 +32,7 @@
         </div>
       </div>
       <div v-if="backlogItemsFilter.length > 0">
-        <div v-for="b in backlogItemsFilter" :key="b" :backlogItem="b">
+        <div>
           <div class="row row shadow rounded my-2 py-3 bg-dark text-light">
             <div class="col-5">
               <h4>
@@ -80,13 +80,13 @@
               <h4>
                 Backlog Title:
               </h4>
-              <span class="text-success">{{ backlogItemsFilter[3].name }}</span>
+              <span class="text-success">{{ backlogItemsFilter[4].name }}</span>
             </div>
             <div class="col-5">
               <h4>
                 Backlog Created:
               </h4>
-              <span class="text-success">{{ backlogItemsFilter[3].description }}</span>
+              <span class="text-success">{{ backlogItemsFilter[4].description }}</span>
             </div>
           </div>
         </div>
