@@ -74,7 +74,9 @@
   </Modal>
   <Modal :id="'tasks-' + backlogItem.id">
     <template #modal-title>
-      Tasks for {{ backlogItem.name }}
+      <div>
+        <p><b>Tasks for</b> {{ backlogItem.name }} </p>
+      </div>
       <div v-if="totalWeight">
         Total Weight: {{ totalWeight }}
       </div>

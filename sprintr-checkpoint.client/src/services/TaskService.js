@@ -43,9 +43,11 @@ class TasksService {
   }
 
   async deleteTask(taskId, projectId) {
+    AppState.totalWeight = 0
     const res = await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
     logger.log('deleteTask', res)
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
+    this.addTaskWeight()
   }
 }
 
