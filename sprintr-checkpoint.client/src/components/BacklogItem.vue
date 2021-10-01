@@ -62,7 +62,6 @@
     </template>
     <template #modal-body>
       <Note v-for="n in notes" :key="n.id" :note="n" />
-      this is appearing where our notes should be :V
     </template>
   </Modal>
   <Modal :id="'task-form-' + backlogItem.id">
@@ -75,7 +74,7 @@
   </Modal>
   <Modal :id="'tasks-' + backlogItem.id">
     <template #modal-title>
-      Note's for {{ backlogItem.name }}
+      Notes for {{ backlogItem.name }}
     </template>
     <template #modal-body>
       <Task v-for="t in tasks" :key="t.id" :task="t" />

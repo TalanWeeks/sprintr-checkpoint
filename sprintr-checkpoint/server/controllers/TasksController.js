@@ -23,6 +23,15 @@ export class TasksController extends BaseController {
     }
   }
 
+  // async getTasksByProjectId(req, res, next) {
+  //   try {
+  //     const tasks = await tasksService.getTasksByProjectId(req.params.id)
+  //     res.send(tasks)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
+
   async getTask(req, res, next) {
     try {
       const task = await tasksService.getTaskById(req.params.id)
