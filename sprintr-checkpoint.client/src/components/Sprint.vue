@@ -32,18 +32,62 @@
         </div>
       </div>
       <div v-if="backlogItemsFilter.length > 0">
-        <div class="row shadow rounded my-2 py-3 bg-dark text-light" v-for="b in backlogItemsFilter" :key="b" :backlogItem="b">
-          <div class="col-5">
-            <h4>
-              Backlog Title:
-            </h4>
-            <span class="text-success">{{ backlogItemsFilter[0].name }}</span>
+        <div v-for="b in backlogItemsFilter" :key="b" :backlogItem="b">
+          <div class="row row shadow rounded my-2 py-3 bg-dark text-light">
+            <div class="col-5">
+              <h4>
+                Backlog Title:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[0].name }}</span>
+            </div>
+            <div class="col-5">
+              <h4>
+                Backlog Created:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[0].description }}</span>
+            </div>
           </div>
-          <div class="col-5">
-            <h4>
-              Backlog Created:
-            </h4>
-            <span class="text-success">{{ backlogItemsFilter[0].description }}</span>
+          <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 1">
+            <div class="col-5">
+              <h4>
+                Backlog Title:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[1].name }}</span>
+            </div>
+            <div class="col-5">
+              <h4>
+                Backlog Created:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[1].description }}</span>
+            </div>
+          </div>
+          <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 2">
+            <div class="col-5">
+              <h4>
+                Backlog Title:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[2].name }}</span>
+            </div>
+            <div class="col-5">
+              <h4>
+                Backlog Created:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[2].description }}</span>
+            </div>
+          </div>
+          <div class="row row shadow rounded my-2 py-3 bg-dark text-light" v-if="backlogItemsFilter.length > 3">
+            <div class="col-5">
+              <h4>
+                Backlog Title:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[3].name }}</span>
+            </div>
+            <div class="col-5">
+              <h4>
+                Backlog Created:
+              </h4>
+              <span class="text-success">{{ backlogItemsFilter[3].description }}</span>
+            </div>
           </div>
         </div>
       </div>
