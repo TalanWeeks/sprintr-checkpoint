@@ -21,15 +21,18 @@
 
           <label for="backlogItems" class="m-1">Asign a BackLog:</label>
 
-          <select name="backlogItems" id="backlogItems" @change="addBacklogToSprint($event)">
+          <select name="backlogItems" id="backlogItems" @click="addBacklogToSprint($event)">
+            <option class="unselectable">
+              default
+            </option>
             <option v-for="backlogItem in backlogItems" :key="backlogItem" :value="backlogItem.id">
               {{ backlogItem.name }}
             </option>
           </select>
         </div>
       </div>
-      <div v-if="backlogItemsFilter">
-        <div class="row shadow rounded my-2 py-3 bg-dark text-light">
+      <div v-if="backlogItemsFilter.length > 0">
+        <div class="row shadow rounded my-2 py-3 bg-dark text-light" v-for="b in backlogItemsFilter" :key="b" :backlogItem="b">
           <div class="col-5">
             <h4>
               Backlog Title:
@@ -68,6 +71,7 @@ export default {
       account: computed(() => AppState.account),
       backlogItems: computed(() => AppState.backlogItems),
       backlogItemsFilter: computed(() => AppState.backlogItems.filter(b => b.sprintId === props.sprint.id)),
+
       async deleteSprint(sprintId) {
         try {
           await sprintsService.deleteSprint(route.params.id, sprintId)
