@@ -19,7 +19,7 @@
             <i class="mdi mdi-delete-forever text-danger f-20 selectable m-0" @click="deleteSprint(sprint.id)" v-if="account.id == sprint.creatorId"></i>
           </div>
 
-          <label for="backlogItems" class="m-1">Asign a BackLog:</label>
+          <label for="backlogItems" class="m-1">Assign a BackLog:</label>
 
           <select name="backlogItems" id="backlogItems" @change="addBacklogToSprint($event)">
             <option class="unselectable">

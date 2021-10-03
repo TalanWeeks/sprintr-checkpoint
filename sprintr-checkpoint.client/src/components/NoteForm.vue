@@ -2,13 +2,13 @@
   <form @submit.prevent="createNote()">
     <div class="form-group">
       <label for="name"></label>
-      <input v-model="editable.name"
+      <!-- <input v-model="editable.name"
              type="text"
              name="name"
              id="name"
              placeholder="this is not needed"
              class="form-control"
-      >
+      > -->
     </div>
     <div class="form-group">
       <label for="body"></label>
@@ -20,7 +20,7 @@
              class="form-control"
       >
     </div>
-    <div class="btn-group">
+    <div class="btn-group mt-2">
       <button type="submit" class="btn btn-success selectable">
         <b>Submit</b>
       </button>
